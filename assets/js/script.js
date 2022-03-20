@@ -54,7 +54,7 @@ var newDay = function() {
 }
 
 // function is called if user leaves and returns to site or refreshes the page
-// loads saved content into empty timeslots
+// loads saved tasks into empty timeslots
 var reloadDay = function() {
     currentDayEl.text(localStorage.getItem("currentDay"));
     tasksArray = JSON.parse(localStorage.getItem("tasks"));
