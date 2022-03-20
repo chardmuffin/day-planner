@@ -95,21 +95,19 @@ var localSave = function() {
 
 
 
-
-// run each site visit
+//init blank tasks
 newDay();
 
 // if we are revisiting website (a save exists) ...
 if (localStorage.getItem("currentDay") !== null) {
-    // ... from the same day
+    // ... from the same day, then reload today's tasks
     if (localStorage.getItem("currentDay") === moment().format('MMMM Do YYYY')) {
         reloadDay();
     }
-    // ... from a different day
-    else {
-        localSave();
-    }
 }
+
+// if save is not from the same day, or if first time visiting site, create a save with blank tasks
+localSave();
 
 //save text when respective save button is clicked
 containerEl.on("click", "i", function() {
