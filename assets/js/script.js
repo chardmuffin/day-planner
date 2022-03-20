@@ -3,9 +3,14 @@ var currentDayEl = $("#currentDay");
 var containerEl = $(".container");
 var tasksArray = Array(9).fill("");
 
-// function is triggered at midnight each night and each time site is visited
+// function is triggered at midnight if tab is left open, or each time site is visited
 // loads empty time slots onto the screen and color codes based on current time
 var newDay = function() {
+
+    //empty task list in case user passes midnight
+    containerEl.empty();
+    tasksArray = Array(9).fill("");
+
     currentDayEl.text(moment().format('MMMM Do YYYY'));
     
     var i = 8;
@@ -93,6 +98,13 @@ var localSave = function() {
     localStorage.setItem("tasks", JSON.stringify(tasksArray));
 }
 
+var checkDate = function() {
+    if (localStorage.getItem("currentDay") !== moment().format('MMMM Do YYYY')) {
+        newDay();
+        localSave();
+    }
+}
+
 //init blank tasks
 newDay();
 
@@ -107,8 +119,11 @@ if (localStorage.getItem("currentDay") !== null) {
 // if save is not from the same day, or if first time visiting site, create a save with blank tasks
 localSave();
 
-// shade timeslots every minute
-setInterval(shadeTimeSlots, 60 * 1000);
+// shade timeslots and check the date every minute
+setInterval(function() {
+    shadeTimeSlots();
+    checkDate();
+}, 60 * 1000);
 
 //save text when respective save button is clicked
 containerEl.on("click", "i", function() {
