@@ -19,6 +19,13 @@ When the day changes (e.g. from 11:59PM to 12:00AM), all saved notes will be cle
 
 ![screen0](./assets/images/screen0.png)
 
+## Resources
+
+Save icon from font awesome:
+[https://fontawesome.com/v5/icons/save?s=solid](https://fontawesome.com/v5/icons/save?s=solid)
+
+Time library - moment.js:
+[https://momentjs.com/](https://momentjs.com/)
 
 ## License
 
