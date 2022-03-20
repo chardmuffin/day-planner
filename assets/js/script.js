@@ -92,12 +92,13 @@ var shadeTimeSlots = function() {
     });
 }
 
-//function is called to save items to local storage
+// function is called to save items to local storage
 var localSave = function() {
     localStorage.setItem("currentDay", currentDayEl.text());
     localStorage.setItem("tasks", JSON.stringify(tasksArray));
 }
 
+// if date has changed, start a new day and wipe local save
 var checkDate = function() {
     if (localStorage.getItem("currentDay") !== moment().format('MMMM Do YYYY')) {
         newDay();
