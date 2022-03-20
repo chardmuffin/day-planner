@@ -100,7 +100,7 @@ newDay();
 
 // if we are revisiting website (a save exists) ...
 if (localStorage.getItem("currentDay") !== null) {
-    // ... from the same day, then reload today's tasks
+    // ... on the same day, then reload today's tasks
     if (localStorage.getItem("currentDay") === moment().format('MMMM Do YYYY')) {
         reloadDay();
     }
