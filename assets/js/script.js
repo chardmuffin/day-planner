@@ -1,7 +1,7 @@
 //global vars
 var currentDayEl = $("#currentDay");
 var containerEl = $(".container");
-var tasksArray;
+var tasksArray = Array(9).fill("");
 
 // function is triggered at midnight each night and each time site is visited
 // loads empty time slots onto the screen and color codes based on current time
@@ -27,10 +27,10 @@ var newDay = function() {
         var timeContainer = $("<div>");
         timeContainer.addClass("my-4")
         var textCol = $("<div>");
-        textCol.addClass("col-10 pl-0")
+        textCol.addClass("col-10 pl-0 pr-0")
         var textArea = $("<textarea>");
         var saveCol = $("<div>");
-        saveCol.addClass("col-1 saveBtn")
+        saveCol.addClass("col-1 saveBtn text-center")
         var saveIconContainer = $("<div>")
         saveIconContainer.addClass("my-4")
         var saveIcon = $("<i>");
@@ -58,16 +58,22 @@ var newDay = function() {
 var reloadDay = function() {
     currentDayEl.text(localStorage.getItem("currentDay"));
     tasksArray = JSON.parse(localStorage.getItem("tasks"));
+
+    var i = 0;
+    containerEl.children('.row').each(function () {
+        $(this).find("textarea").val(tasksArray[i]);
+        i++;
+    });
 }
 
 //shades the timeslots based on current time
 var shadeTimeSlots = function() {
     var currentTime = moment().format("hA");
-    currentTime = moment(currentTime, "hA")
+    currentTime = moment(currentTime, "hA");
     
     containerEl.children('.row').each(function () {
-        var textColEl = $(this).find(":nth-child(2)")
-        var thisTime = moment($(this).find(":first").text(), "hA")
+        var textColEl = $(this).find(":nth-child(2)");
+        var thisTime = moment($(this).find(":first").text(), "hA");
 
         if (thisTime.isBefore(currentTime)) {
             textColEl.addClass("past");
@@ -90,22 +96,25 @@ var localSave = function() {
 
 
 
-// run these if statements every visit
-// if this is first time visiting website
-if (localStorage.getItem("currentDay") === null) {
-    console.log("first visit. welcome!");
-    newDay();
+// run each site visit
+newDay();
+
+// if we are revisiting website (a save exists) ...
+if (localStorage.getItem("currentDay") !== null) {
+    // ... from the same day
+    if (localStorage.getItem("currentDay") === moment().format('MMMM Do YYYY')) {
+        reloadDay();
+    }
+    // ... from a different day
+    else {
+        localSave();
+    }
+}
+
+//save text when respective save button is clicked
+containerEl.on("click", "i", function() {
+    var row = $(this).closest(".row");
+    var rowIndex = row.index();
+    tasksArray[rowIndex] = row.find("textarea").val();
     localSave();
-}
-// if we are revisiting website on the same day
-else if (localStorage.getItem("currentDay") === moment().format('MMMM Do YYYY')) {
-    console.log("welcome back!");
-    newDay();
-    reloadDay();
-}
-// if we are revisiting website on a new day
-else {
-    console.log("welcome back! it is a new day!");
-    newDay();
-    localSave();
-}
+});
