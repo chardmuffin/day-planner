@@ -1,4 +1,4 @@
-//global vars
+// global vars
 var currentDayEl = $("#currentDay");
 var containerEl = $(".container");
 var tasksArray = Array(9).fill("");
