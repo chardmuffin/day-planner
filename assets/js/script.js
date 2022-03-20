@@ -93,8 +93,6 @@ var localSave = function() {
     localStorage.setItem("tasks", JSON.stringify(tasksArray));
 }
 
-
-
 //init blank tasks
 newDay();
 
@@ -108,6 +106,9 @@ if (localStorage.getItem("currentDay") !== null) {
 
 // if save is not from the same day, or if first time visiting site, create a save with blank tasks
 localSave();
+
+// shade timeslots every minute
+setInterval(shadeTimeSlots, 60 * 1000);
 
 //save text when respective save button is clicked
 containerEl.on("click", "i", function() {
