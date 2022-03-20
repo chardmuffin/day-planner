@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Work Day Scheduler</title>
   </head>
 
@@ -29,7 +29,19 @@
       <p id="currentDay" class="lead"></p>
     </header>
     <div class="container">
-      <!-- Timeblocks go here -->
+      <div class="row">
+        <div class="col-1 hour text-center">
+          9AM
+        </div>
+        <div class="col-10 pl-0 past">
+          <textarea class="">
+            This task in past
+          </textarea>
+        </div>
+        <div class="col-1 saveBtn text-center">
+            <i class="fa fa-save align-middle"></i>
+        </div>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

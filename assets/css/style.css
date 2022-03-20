@@ -1,3 +1,5 @@
+
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
@@ -9,8 +11,11 @@ textarea{
   border: none;
   resize: none;
   color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
+  border-left: 8px solid blueviolet;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: -32px;
 }
 
 .jumbotron {
@@ -23,11 +28,6 @@ textarea{
 
 .description{
   white-space: pre-wrap;
-}
-
-.time-block{
-  text-align: center;
-  border-radius: 15px;
 }
 
 .row {
@@ -58,7 +58,7 @@ textarea{
 }
 
 .saveBtn {
-  border-left: 1px solid black;
+  border-left: 8px solid blueviolet;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
