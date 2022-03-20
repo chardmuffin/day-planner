@@ -62,12 +62,29 @@ var reloadDay = function() {
 
 //shades the timeslots based on current time
 var shadeTimeSlots = function() {
+    var currentTime = moment().format("hA");
+    currentTime = moment(currentTime, "hA")
     
+    containerEl.children('.row').each(function () {
+        var textColEl = $(this).find(":nth-child(2)")
+        var thisTime = moment($(this).find(":first").text(), "hA")
+
+        if (thisTime.isBefore(currentTime)) {
+            textColEl.addClass("past");
+        }
+        else if (thisTime.isSame(currentTime)) {
+            textColEl.addClass("present");
+        }
+        else {
+            textColEl.addClass("future");
+        }
+    });
 }
 
 //function is called to save items to local storage
 var localSave = function() {
     localStorage.setItem("currentDay", currentDayEl.text());
+    localStorage.setItem("tasks", JSON.stringify(tasksArray));
 }
 
 
