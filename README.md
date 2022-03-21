@@ -11,7 +11,7 @@ Click the color-shaded portion of any row to enter or edit notes. To save a note
 Closing the application and re-opening it within the same day will not cause any notes to become lost as long as the save button was clicked for each note.
 
 When the hour changes, (e.g. from 9:59AM to 10:00AM), the color-shading will update to match the criteria:
-* pink - past hours
+* light grey - past hours
 * red - present hour
 * green - future hours
 
